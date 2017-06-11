@@ -56,7 +56,8 @@ agora o algoritmo k-means, para organizar cada um desses pixels em um
 grupo. O K-means pede o número de grupos como input, vamos começar com
 6.
 </p>
-<pre class="r"><code>km &lt;- kmeans(img_matrix, centers = 6)</code></pre>
+<pre class="r"><code>km &lt;- kmeans(img_matrix, centers = 6)
+## Warning: Quick-TRANSfer stage steps exceeded maximum (= 39985000)</code></pre>
 <p>
 O objeto gerado pela função <code>kmeans</code> armazena um vetor
 chamado <code>cluster</code> (do tamanho do número de linhas da matriz)
@@ -79,12 +80,12 @@ centroides &lt;- img_df %&gt;% group_by(cluster) %&gt;% summarise_all(mean) cent
 ## # A tibble: 6 x 4
 ## cluster r g b
 ## &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 1 0.0996826 0.04366903 0.2398452
-## 2 2 0.6239192 0.28335790 0.1897367
-## 3 3 0.8857289 0.77915257 0.6688482
-## 4 4 0.2721465 0.36412137 0.4901613
-## 5 5 0.3789830 0.11857741 0.1558412
-## 6 6 0.7195362 0.54881786 0.4098359</code></pre>
+## 1 1 0.1175119 0.04253211 0.2199641
+## 2 2 0.4754028 0.16566003 0.1548975
+## 3 3 0.6949140 0.42026498 0.2792096
+## 4 4 0.8679457 0.74966801 0.6294652
+## 5 5 0.2246133 0.28411512 0.4462488
+## 6 6 0.3923888 0.47786446 0.5409067</code></pre>
 <p>
 Também transformamos uma cor r, g e b em uma representação hexadecimal.
 Assim conseguimos um vetor de caracteres que representa a a paleta de
@@ -92,7 +93,7 @@ cores.
 </p>
 <pre class="r"><code>centroides &lt;- centroides %&gt;% mutate(cor = rgb(r, g, b))
 centroides$cor
-## [1] &quot;#190B3D&quot; &quot;#9F4830&quot; &quot;#E2C7AB&quot; &quot;#455D7D&quot; &quot;#611E28&quot; &quot;#B78C69&quot;</code></pre>
+## [1] &quot;#1E0B38&quot; &quot;#792A27&quot; &quot;#B16B47&quot; &quot;#DDBFA1&quot; &quot;#394872&quot; &quot;#647A8A&quot;</code></pre>
 <p>
 Para exibir a paleta vamos usar a seguinte função que foi copiada e
 levemente modificada

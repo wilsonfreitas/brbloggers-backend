@@ -19,7 +19,7 @@ safe_mercury <- possibly(function(x){
   if(is.null(req$content)){
     return(NA)
   } else {
-    req$content
+    return(req$content)
   }
 }, NA, quiet = FALSE)
 

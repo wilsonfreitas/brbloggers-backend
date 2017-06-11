@@ -84,44 +84,45 @@ saveRDS(posts, "data/posts.rds")
 
 
 # Write feeds to directory ------------------------------------------------
-
-for(i in 1:nrow(new_posts)){
-  
-  if(!is.na(new_posts$item_content[i])){
+if(nrow(new_posts) > 0){
+  for(i in 1:nrow(new_posts)){
     
-    file_name <- fix_file_name(
-      new_posts$blog[i], 
-      new_posts$item_link[i], 
-      new_posts$feed_link[i]
-    )
-    
-    # writing the html file
-    write_lines(new_posts$item_content[i], sprintf("%s.html", file_name))
-    
-    # convert file to markdown
-    rmarkdown::render(sprintf("%s.html", file_name), rmarkdown::md_document())
-    
-    # add the header and rewrite
-    md_file <- read_file(sprintf("%s.md", file_name)) 
-    
-    readr::write_lines(
-      sprintf(
-        "%s\n%s",
-        create_md_header(
-          new_posts$item_title[i], 
-          new_posts$item_date_published[i], 
-          new_posts$blog[i]
-        ),
-        md_file
+    if(!is.na(new_posts$item_content[i])){
+      
+      file_name <- fix_file_name(
+        new_posts$blog[i], 
+        new_posts$item_link[i], 
+        new_posts$feed_link[i]
+      )
+      
+      # writing the html file
+      write_lines(new_posts$item_content[i], sprintf("%s.html", file_name))
+      
+      # convert file to markdown
+      rmarkdown::render(sprintf("%s.html", file_name), rmarkdown::md_document())
+      
+      # add the header and rewrite
+      md_file <- read_file(sprintf("%s.md", file_name)) 
+      
+      readr::write_lines(
+        sprintf(
+          "%s\n%s",
+          create_md_header(
+            new_posts$item_title[i], 
+            new_posts$item_date_published[i], 
+            new_posts$blog[i]
+          ),
+          md_file
         ), 
-      sprintf("%s.md", file_name)
-    )
-    
-    # delete html file
-    file.remove(sprintf("%s.html", file_name))
+        sprintf("%s.md", file_name)
+      )
+      
+      # delete html file
+      file.remove(sprintf("%s.html", file_name))
+      
+    }
     
   }
-  
 }
 
 

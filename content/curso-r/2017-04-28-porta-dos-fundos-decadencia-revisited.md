@@ -4,19 +4,59 @@ date = "2017-04-28 20:26:00"
 categories = ["curso-r"]
 +++
 
-<div id="post-content"> <p>&#xC0;s vezes a venda de uma empresa &#xE9; um sinal de que algo n&#xE3;o vai bem. At&#xE9; pode ser verdade que nada ruim estivesse acontecendo e, por qualquer motivo que seja, algu&#xE9;m achou melhor parar enquanto estava ganhando, mas eu custo a acreditar que o Porta Dos Fundos estava nessa situa&#xE7;&#xE3;o. Principalmente considerando o futuro sombrio que pode esper&#xE1;-los.</p>
-<p>A &#xFA;ltima aquisi&#xE7;&#xE3;o da Viacom no Brasil foi a finada MTV. Depois de 20 anos de presen&#xE7;a relevante no cen&#xE1;rio musical brasileiro, o peso dos anos culminou na venda da MTV para a gigante americana. Hoje, a MTV se limita a produzir vers&#xF5;es brasileiras p&#xE9;ssimas de s&#xE9;ries americanas ruins, dar emprego a subcelebridades ligadas ao Supla e reprisar lixos enlatados estadunidenses. Talvez esse n&#xE3;o seja o destino que aguarda os integrantes do Porta, at&#xE9; porque alguns deles j&#xE1; tiveram rela&#xE7;&#xF5;es diretas com a Viacom e o resultado n&#xE3;o foi desastroso, mas, se eu fosse um deles, o triste fim da MTV Brasil soaria o meu alarme de cilada.</p>
-<p>Inconformados com a venda e buscando entender com mais afinco os motivos que levaram &#xE0; venda, neste post revisitamos a an&#xE1;lise sobre a decad&#xEA;ncia do Porta dos Fundos.</p>
-<div id="setup" class="section level2"> <p>Vamos proceder de uma maneira muito parecida com a que fizemos na &#xFA;ltima vez. O dataset do Willy era composto por informa&#xE7;&#xF5;es sobre todos os v&#xED;deos do Porta e as suas colunas eram:</p>
+<p>
+Às vezes a venda de uma empresa é um sinal de que algo não vai bem. Até
+pode ser verdade que nada ruim estivesse acontecendo e, por qualquer
+motivo que seja, alguém achou melhor parar enquanto estava ganhando, mas
+eu custo a acreditar que o Porta Dos Fundos estava nessa situação.
+Principalmente considerando o futuro sombrio que pode esperá-los.
+</p>
+<p>
+A última aquisição da Viacom no Brasil foi a finada MTV. Depois de 20
+anos de presença relevante no cenário musical brasileiro, o peso dos
+anos culminou na venda da MTV para a gigante americana. Hoje, a MTV se
+limita a produzir versões brasileiras péssimas de séries americanas
+ruins, dar emprego a subcelebridades ligadas ao Supla e reprisar lixos
+enlatados estadunidenses. Talvez esse não seja o destino que aguarda os
+integrantes do Porta, até porque alguns deles já tiveram relações
+diretas com a Viacom e o resultado não foi desastroso, mas, se eu fosse
+um deles, o triste fim da MTV Brasil soaria o meu alarme de cilada.
+</p>
+<p>
+Inconformados com a venda e buscando entender com mais afinco os motivos
+que levaram à venda, neste post revisitamos a análise sobre a decadência
+do Porta dos Fundos.
+</p>
+<p>
+Vamos proceder de uma maneira muito parecida com a que fizemos na última
+vez. O dataset do Willy era composto por informações sobre todos os
+vídeos do Porta e as suas colunas eram:
+</p>
 <ol>
-<li>O t&#xED;tulo do v&#xED;deo.</li>
-<li>A data de publica&#xE7;&#xE3;o.</li>
-<li>A contagem de visualiza&#xE7;&#xF5;es.</li>
-<li>A contagem de Likes.</li>
-<li>Acontagem de Dislikes.</li>
-<li>O n&#xFA;mero de coment&#xE1;rios.</li>
+<li>
+O título do vídeo.
+</li>
+<li>
+A data de publicação.
+</li>
+<li>
+A contagem de visualizações.
+</li>
+<li>
+A contagem de Likes.
+</li>
+<li>
+Acontagem de Dislikes.
+</li>
+<li>
+O número de comentários.
+</li>
 </ol>
-<p>Neste post vamos usar o mesmo dataset, mas atualizado-o at&#xE9; a data da publica&#xE7;&#xE3;o deste post. Isso pode ser feito rodando o c&#xF3;digo abaixo, que tamb&#xE9;m carrega os pactoes necess&#xE1;rios para a an&#xE1;lise.</p>
+<p>
+Neste post vamos usar o mesmo dataset, mas atualizado-o até a data da
+publicação deste post. Isso pode ser feito rodando o código abaixo, que
+também carrega os pactoes necessários para a análise.
+</p>
 <pre class="r"><code>library(tuber) yt_oauth(&quot;seus&quot;, &quot;dados&quot;)</code></pre>
 <pre class="r"><code>library(dplyr) # Manipula&#xE7;&#xE3;o de dados
 library(tidyr) # Manipula&#xE7;&#xE3;o de dados
@@ -30,30 +70,145 @@ library(ggplot2) # Gr&#xE1;ficos</code></pre>
 <pre class="r"><code>get_videos_stats &lt;- function(df_row) { get_stats(video_id = df_row$video_id)
 }</code></pre>
 <pre class="r"><code>dados &lt;- bind_rows(videos$videos_info) %&gt;% select(title, publishedAt, video_id) %&gt;% by_row(..f = get_videos_stats, .to = &quot;videos_stats&quot;)</code></pre>
-<p>Nas subse&#xE7;&#xF5;es seguintes, vamos revisitar as an&#xE1;lises anteriores colocando algumas novas ideias no caldeir&#xE3;o.</p>
-</div>
-<div id="videos-velhos-x-videos-novos" class="section level2"> <p>Menos do que a compra pela Viacom, a s&#xE9;rie temporal de visualiza&#xE7;&#xF5;es foi o que realmente me motivou a escrever esse texto.</p>
+<p>
+Nas subseções seguintes, vamos revisitar as análises anteriores
+colocando algumas novas ideias no caldeirão.
+</p>
+
+<p>
+Menos do que a compra pela Viacom, a série temporal de visualizações foi
+o que realmente me motivou a escrever esse texto.
+</p>
 <pre class="r"><code>dados %&gt;% mutate(views = map(videos_stats, .f = &apos;viewCount&apos;)) %&gt;% unnest(views) %&gt;% mutate(views = as.numeric(views), publishedAt = as_date(publishedAt)) %&gt;% ggplot(aes(x = publishedAt, y = views)) + geom_line() + labs(x = &quot;Data de publica&#xE7;&#xE3;o&quot;, y = &quot;Visualiza&#xE7;&#xF5;es&quot;) + theme_bw()</code></pre>
-<p><img src="http://curso-r.com/blog/2017-04-28-porta-dos-fundos-decadencia-revisited_files/figure-html/unnamed-chunk-9-1.png" width="672"></p>
-<p>O n&#xFA;mero de visualiza&#xE7;&#xF5;es est&#xE1; em uma queda cont&#xED;nua, isso quer dizer que o porta dos fundos est&#xE1; recebendo menos <em>views</em>? Depende de como voc&#xEA; interpreta esse dado. A resposta ser&#xE1; &#x201C;sim&#x201D; se voc&#xEA; assumir que o n&#xFA;mero de visualiza&#xE7;&#xF5;es de longo prazo &#xE9; negligenci&#xE1;vel e que o grosso do n&#xFA;mero de <em>views</em> de um v&#xED;deo vem dos seus primeiros dias de vida. Pensando assim, interpretamos que o que a gente observa &#xE9; aproximadamente igual &#xE0; quantidade de <em>views</em> no come&#xE7;o da vida de cada um dos v&#xED;deos do PDF, de tal forma que se esse n&#xFA;mero desce, quer dizer que a quantidade de visualiza&#xE7;&#xF5;es de um v&#xED;deo logo que ele sai tamb&#xE9;m deve estar caindo.</p>
-<p>Para analisar esses dados de outra forma, eu vou abandonar a suposi&#xE7;&#xE3;o de que a quantidade de views &#xE9; negligenci&#xE1;vel no longo prazo. Dessa vez, eu vou supor que quanto mais velho for o v&#xED;deo, mais visualiza&#xE7;&#xF5;es ele tem, afinal as pessoas provavelmente voltam nele de tempos em tempos. Pra simplificar as coisas, tamb&#xE9;m vou admitir que a quantidade de pessoas que fica voltando nele &#xE9; mais ou menos constante. Juntando tudo isso, o que eu quero dizer &#xE9; que o n&#xFA;mero esperado de pessoas que assistem a um v&#xED;deo velho em um certo dia muito distante da sua publica&#xE7;&#xE3;o n&#xE3;o &#xE9; negligenci&#xE1;vel, mas &#xE9; pequeno e contante.</p>
-<p>Em termos um pouco mais precisos, podemos entender toda essa conversa atrav&#xE9;s da equa&#xE7;&#xE3;o</p>
-<p><span class="math display">\[\text{N&#xFA;mero de Views de um v&#xED;deo} = \]</span> <span class="math display">\[\text{Views no come&#xE7;o da vida do v&#xED;deo} + \text{Idade do v&#xED;deo} \times \text{Taxa} + \text{Erro aleat&#xF3;rio},\]</span></p>
-<p>onde <span class="math inline">\(Taxa\)</span> &#xE9; o n&#xFA;mero de esperado de views de um v&#xED;deo velho em um dia qualquer. Nesses termos, a diferen&#xE7;a entre o ponto que quero defender e o ponto que o Willy defendeu no post anterior &#xE9; que ele assume que a Taxa &#xE9; pequena demais para importar, enquanto eu n&#xE3;o acho que ela seja negligenci&#xE1;vel.</p>
-<p>Podemos dar uma olhada no que esse modelo diz sobre os dados considerando que, se um v&#xED;deo for muito velho, podemos obter uma estimativa razo&#xE1;vel da quantidade de pessoas que ainda assistem um v&#xED;deo se dividirmos o n&#xFA;mero de visualiza&#xE7;&#xF5;es pelo n&#xFA;mero de dias desde a sua publica&#xE7;&#xE3;o.</p>
+<p>
+<img src="http://curso-r.com/blog/2017-04-28-porta-dos-fundos-decadencia-revisited_files/figure-html/unnamed-chunk-9-1.png" width="672">
+</p>
+<p>
+O número de visualizações está em uma queda contínua, isso quer dizer
+que o porta dos fundos está recebendo menos <em>views</em>? Depende de
+como você interpreta esse dado. A resposta será “sim” se você assumir
+que o número de visualizações de longo prazo é negligenciável e que o
+grosso do número de <em>views</em> de um vídeo vem dos seus primeiros
+dias de vida. Pensando assim, interpretamos que o que a gente observa é
+aproximadamente igual à quantidade de <em>views</em> no começo da vida
+de cada um dos vídeos do PDF, de tal forma que se esse número desce,
+quer dizer que a quantidade de visualizações de um vídeo logo que ele
+sai também deve estar caindo.
+</p>
+<p>
+Para analisar esses dados de outra forma, eu vou abandonar a suposição
+de que a quantidade de views é negligenciável no longo prazo. Dessa vez,
+eu vou supor que quanto mais velho for o vídeo, mais visualizações ele
+tem, afinal as pessoas provavelmente voltam nele de tempos em tempos.
+Pra simplificar as coisas, também vou admitir que a quantidade de
+pessoas que fica voltando nele é mais ou menos constante. Juntando tudo
+isso, o que eu quero dizer é que o número esperado de pessoas que
+assistem a um vídeo velho em um certo dia muito distante da sua
+publicação não é negligenciável, mas é pequeno e contante.
+</p>
+<p>
+Em termos um pouco mais precisos, podemos entender toda essa conversa
+através da equação
+</p>
+<p>
+<span class="math display">
+N&\#xFA;mero de Views de um v&\#xED;deo=
+</span> <span class="math display">
+Views no come&\#xE7;o da vida do v&\#xED;deo + Idade do v&\#xED;deo × Taxa + Erro aleat&\#xF3;rio,
+</span>
+</p>
+<p>
+onde <span class="math inline">*T**a**x**a*</span> é o número de
+esperado de views de um vídeo velho em um dia qualquer. Nesses termos, a
+diferença entre o ponto que quero defender e o ponto que o Willy
+defendeu no post anterior é que ele assume que a Taxa é pequena demais
+para importar, enquanto eu não acho que ela seja negligenciável.
+</p>
+<p>
+Podemos dar uma olhada no que esse modelo diz sobre os dados
+considerando que, se um vídeo for muito velho, podemos obter uma
+estimativa razoável da quantidade de pessoas que ainda assistem um vídeo
+se dividirmos o número de visualizações pelo número de dias desde a sua
+publicação.
+</p>
 <pre class="r"><code>dados %&gt;% mutate(views = map(videos_stats, .f = &apos;viewCount&apos;)) %&gt;% unnest(views) %&gt;% mutate(views = as.numeric(views), publishedAt = as_date(publishedAt), idade = as.numeric(Sys.Date() - publishedAt)) %&gt;% filter(publishedAt &lt; as.Date(&quot;2017-01-01&quot;)) %&gt;% ggplot(aes(x = publishedAt, y = (views)/idade)) + geom_line() + labs(x = &quot;Data de publica&#xE7;&#xE3;o&quot;, y = &quot;Visualiza&#xE7;&#xF5;es/Idade&quot;) + theme_bw() + geom_smooth(alpha = 0)</code></pre>
-<p><img src="http://curso-r.com/blog/2017-04-28-porta-dos-fundos-decadencia-revisited_files/figure-html/unnamed-chunk-10-1.png" width="672"></p>
-<p>O gr&#xE1;fico acima suporta parcialmente a nossa teoria: a estabilidade na raz&#xE3;o entre o n&#xFA;mero de visualiza&#xE7;&#xF5;es e a idade n&#xE3;o seria identificada a menos que todos os v&#xED;deos antigos do Porta estivessem sujeitos &#xE0; mesma audi&#xEA;ncia recorrente (mais ou menos), mesmo com uma variabilidade grande. Al&#xE9;m disso, se os v&#xED;deos antigos fossem simplesmente abandonados (caso em que a Taxa &#xE9; igual a <span class="math inline">\(0\)</span>), ent&#xE3;o dever&#xED;amos observar raz&#xF5;es de Visualiza&#xE7;&#xE3;o por Idade muito menores para v&#xED;deos mais velhos.</p>
-<p>Entretanto, nosso modelo tem uma defici&#xEA;ncia s&#xE9;ria: sempre vamos observar um aumento na raz&#xE3;o de <em>views</em> por idade no final da amostra, pois a idade desses v&#xED;deos vai ficando cada vez menor, dando mais peso ao n&#xFA;mero de <em>views</em> na inf&#xE2;ncia do v&#xED;deo, o que pode distorcer as nossas interpreta&#xE7;&#xF5;es.</p>
-<p>De toda a forma, a establidade do come&#xE7;o do gr&#xE1;fico me convenceu de que a taxa &#xE9; constante. Disso decorre que, como a curva est&#xE1; subindo, n&#xE3;o ficando est&#xE1;vel, devo assumir alguma das duas hip&#xF3;teses: ou o porta dos fundos est&#xE1; sendo mais assitido de 2016 pra c&#xE1; ou o meu modelo est&#xE1; se comportando exatamente do jeito que deveria. Como em nenhuma dessas Porta Dos Fundos est&#xE1; perdendo <em>views</em>, sou obrigado a concluir que, no m&#xED;nimo, tudo est&#xE1; est&#xE1;vel.</p>
-</div>
-<div id="likes-e-dislikes" class="section level2"> <p>O Willy nos contou que a propor&#xE7;&#xE3;o de Likes por Dislike &#xE9; muit&#xED;ssimo grande nos v&#xED;deos do PDF: eles devem ter uma m&#xE9;dia de 26 likes por cada dislike, o que significa que o v&#xED;deo m&#xE9;dio do PDF tem 96% de likes.</p>
+<p>
+<img src="http://curso-r.com/blog/2017-04-28-porta-dos-fundos-decadencia-revisited_files/figure-html/unnamed-chunk-10-1.png" width="672">
+</p>
+<p>
+O gráfico acima suporta parcialmente a nossa teoria: a estabilidade na
+razão entre o número de visualizações e a idade não seria identificada a
+menos que todos os vídeos antigos do Porta estivessem sujeitos à mesma
+audiência recorrente (mais ou menos), mesmo com uma variabilidade
+grande. Além disso, se os vídeos antigos fossem simplesmente abandonados
+(caso em que a Taxa é igual a <span class="math inline">0</span>), então
+deveríamos observar razões de Visualização por Idade muito menores para
+vídeos mais velhos.
+</p>
+<p>
+Entretanto, nosso modelo tem uma deficiência séria: sempre vamos
+observar um aumento na razão de <em>views</em> por idade no final da
+amostra, pois a idade desses vídeos vai ficando cada vez menor, dando
+mais peso ao número de <em>views</em> na infância do vídeo, o que pode
+distorcer as nossas interpretações.
+</p>
+<p>
+De toda a forma, a establidade do começo do gráfico me convenceu de que
+a taxa é constante. Disso decorre que, como a curva está subindo, não
+ficando estável, devo assumir alguma das duas hipóteses: ou o porta dos
+fundos está sendo mais assitido de 2016 pra cá ou o meu modelo está se
+comportando exatamente do jeito que deveria. Como em nenhuma dessas
+Porta Dos Fundos está perdendo <em>views</em>, sou obrigado a concluir
+que, no mínimo, tudo está estável.
+</p>
+
+<p>
+O Willy nos contou que a proporção de Likes por Dislike é muitíssimo
+grande nos vídeos do PDF: eles devem ter uma média de 26 likes por cada
+dislike, o que significa que o vídeo médio do PDF tem 96% de likes.
+</p>
 <pre class="r"><code>dados %&gt;% mutate(likes = map(videos_stats, .f = &apos;likeCount&apos;), dislikes = map(videos_stats, .f = &apos;dislikeCount&apos;)) %&gt;% unnest(likes, dislikes) %&gt;% mutate(likes = as.numeric(likes), dislikes = as.numeric(dislikes), publishedAt = as_date(publishedAt), prop = likes/dislikes) %&gt;% ggplot(aes(x = publishedAt)) + geom_line(aes(y = prop)) + labs(x = &quot;Data de publica&#xE7;&#xE3;o&quot;, y = &quot;Likes/Dislikes&quot;) + theme_bw()</code></pre>
-<p><img src="http://curso-r.com/blog/2017-04-28-porta-dos-fundos-decadencia-revisited_files/figure-html/unnamed-chunk-11-1.png" width="672"></p>
-<p>A despeito disso, tamb&#xE9;m &#xE9; verdade que existe uma classe de v&#xED;deos do PDF que &#xE9; fuzilada pelo p&#xFA;blico. Pra se ter uma ideia, um v&#xED;deo de 2016, o &#x201C;Dela&#xE7;&#xE3;o&#x201D;, chegou a ter apenas 40% de likes! Isso &#xE9; o mesmo que dizer que para cada duas pessoas que gostaram do v&#xED;deos existem outras que n&#xE3;o gostaram.</p>
-<pre class="r"><code>g &lt;- dados %&gt;% mutate(likes = map(videos_stats, .f = &apos;likeCount&apos;), dislikes = map(videos_stats, .f = &apos;dislikeCount&apos;)) %&gt;% unnest(likes, dislikes) %&gt;% mutate(likes = as.numeric(likes), dislikes = as.numeric(dislikes), publishedAt = as_date(publishedAt), prop = likes/(likes+dislikes)) %&gt;% ggplot(aes(x = publishedAt, label = title, y = prop)) + geom_line(color = &apos;black&apos;) + labs(x = &quot;Data de publica&#xE7;&#xE3;o&quot;, y = &quot;Propor&#xE7;&#xE3;o de Likes&quot;) + theme_bw() + scale_y_continuous(labels = scales::percent) plotly::ggplotly(g)</code></pre> <p><br> O comportamento geral desse gr&#xE1;fico d&#xE1; a entender que nada muito importante aconteceu com a propor&#xE7;&#xE3;o de likes dos v&#xED;deos do PDF: quase todo mundo que clicou em alguma das m&#xE3;ozinhas embaixo do v&#xED;deo terminou escolhendo um j&#xF3;inha. Existe um ex&#xE9;rcito de excess&#xF5;es, que est&#xE3;o quase sempre relacionadas &#xE0; religi&#xE3;o, mas a estabilidade do gr&#xE1;fico j&#xE1; &#xE9; suficiente para os nossos prop&#xF3;sitos.</p>
-</div>
-<div id="conclusao" class="section level2"> <p>As minhas an&#xE1;lises n&#xE3;o foram 100% conclusivas, mas indicam que o Porta navegava por &#xE1;guas mais ou menos tranquilas antes da aquisi&#xE7;&#xE3;o. &#xC9; verdade que o n&#xFA;mero de views &#xE9; bastante dif&#xED;cil de interpretar, mas identificamos um padr&#xE3;o esquisito no come&#xE7;o de 2016. Sob uma certa perspectiva, pode-se dizer que os v&#xED;deos come&#xE7;aram a ficar um pouco mais populares do que os seus antecessores. A propor&#xE7;&#xE3;o de likes, por outro lado, &#xE9; um pouco mais f&#xE1;cil de interpretar: ela ficou est&#xE1;vel, ainda que o PDF costume enraivecer o seu p&#xFA;blico de tempos em tempos.</p>
-<p>Considerando essas coisas, talvez a aquisi&#xE7;&#xE3;o n&#xE3;o seja t&#xE3;o terr&#xED;vel quanto parece. O Porta n&#xE3;o estava t&#xE3;o ruim e &#xE9; verdade que eles venderam apenas metade da empresa. Seguindo o prov&#xE9;rbio que diz que &#x201C;Em time que est&#xE1; ganhando n&#xE3;o se mexe&#x201D;, tudo indica que o canal do Youtube vai continuar nos mesmos moldes que vive hoje e &#xE9; poss&#xED;vel que as coisas que eles fa&#xE7;am na TV fiquem razoavelmente boas. Pra finalizar, s&#xF3; tor&#xE7;o para que dessa vez eles fa&#xE7;am algo melhor do que o Show do Kibe, os programas do Danili Gentili e qualquer coisa do Hermes e Renato na TV paga.</p>
-<p>E que n&#xE3;o chamem o Supla pra nada.</p>
-</div> </div>
+<p>
+<img src="http://curso-r.com/blog/2017-04-28-porta-dos-fundos-decadencia-revisited_files/figure-html/unnamed-chunk-11-1.png" width="672">
+</p>
+<p>
+A despeito disso, também é verdade que existe uma classe de vídeos do
+PDF que é fuzilada pelo público. Pra se ter uma ideia, um vídeo de 2016,
+o “Delação”, chegou a ter apenas 40% de likes! Isso é o mesmo que dizer
+que para cada duas pessoas que gostaram do vídeos existem outras que não
+gostaram.
+</p>
+<pre class="r"><code>g &lt;- dados %&gt;% mutate(likes = map(videos_stats, .f = &apos;likeCount&apos;), dislikes = map(videos_stats, .f = &apos;dislikeCount&apos;)) %&gt;% unnest(likes, dislikes) %&gt;% mutate(likes = as.numeric(likes), dislikes = as.numeric(dislikes), publishedAt = as_date(publishedAt), prop = likes/(likes+dislikes)) %&gt;% ggplot(aes(x = publishedAt, label = title, y = prop)) + geom_line(color = &apos;black&apos;) + labs(x = &quot;Data de publica&#xE7;&#xE3;o&quot;, y = &quot;Propor&#xE7;&#xE3;o de Likes&quot;) + theme_bw() + scale_y_continuous(labels = scales::percent) plotly::ggplotly(g)</code></pre>
+<p>
+<br> O comportamento geral desse gráfico dá a entender que nada muito
+importante aconteceu com a proporção de likes dos vídeos do PDF: quase
+todo mundo que clicou em alguma das mãozinhas embaixo do vídeo terminou
+escolhendo um jóinha. Existe um exército de excessões, que estão quase
+sempre relacionadas à religião, mas a estabilidade do gráfico já é
+suficiente para os nossos propósitos.
+</p>
+
+<p>
+As minhas análises não foram 100% conclusivas, mas indicam que o Porta
+navegava por águas mais ou menos tranquilas antes da aquisição. É
+verdade que o número de views é bastante difícil de interpretar, mas
+identificamos um padrão esquisito no começo de 2016. Sob uma certa
+perspectiva, pode-se dizer que os vídeos começaram a ficar um pouco mais
+populares do que os seus antecessores. A proporção de likes, por outro
+lado, é um pouco mais fácil de interpretar: ela ficou estável, ainda que
+o PDF costume enraivecer o seu público de tempos em tempos.
+</p>
+<p>
+Considerando essas coisas, talvez a aquisição não seja tão terrível
+quanto parece. O Porta não estava tão ruim e é verdade que eles venderam
+apenas metade da empresa. Seguindo o provérbio que diz que “Em time que
+está ganhando não se mexe”, tudo indica que o canal do Youtube vai
+continuar nos mesmos moldes que vive hoje e é possível que as coisas que
+eles façam na TV fiquem razoavelmente boas. Pra finalizar, só torço para
+que dessa vez eles façam algo melhor do que o Show do Kibe, os programas
+do Danili Gentili e qualquer coisa do Hermes e Renato na TV paga.
+</p>
+<p>
+E que não chamem o Supla pra nada.
+</p>
+

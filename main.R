@@ -28,10 +28,12 @@ fix_file_name <- function(dir, item_link, feed_link){
   item_link <- item_link %>%
     str_replace(fixed(feed_link), "") %>%
     str_replace("/$", "") %>%
-    str_extract("/[^/]+$")
+    str_extract("/[^/]+$") %>%
+    str_replace_all("%", "-") %>%
+    str_replace_all("[\\(\\)]", "")
   
   sprintf(
-    "content/%s/%s.md", 
+    "content/%s/%s", 
     dir, 
     item_link
   )
@@ -93,6 +95,15 @@ for(i in 1:nrow(new_posts)){
       new_posts$feed_link[i]
     )
     
+    # writing the html file
+    write_lines(new_posts$item_content[i], sprintf("%s.html", file_name))
+    
+    # convert file to markdown
+    rmarkdown::render(sprintf("%s.html", file_name), rmarkdown::md_document())
+    
+    # add the header and rewrite
+    md_file <- read_file(sprintf("%s.md", file_name)) 
+    
     readr::write_lines(
       sprintf(
         "%s\n%s",
@@ -101,10 +112,14 @@ for(i in 1:nrow(new_posts)){
           new_posts$item_date_published[i], 
           new_posts$blog[i]
         ),
-        new_posts$item_content[i]
+        md_file
         ), 
-      file_name
+      sprintf("%s.md", file_name)
     )
+    
+    # delete html file
+    file.remove(sprintf("%s.html", file_name))
+    
   }
   
 }

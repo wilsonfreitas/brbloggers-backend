@@ -4,44 +4,131 @@ date = "2017-04-29 20:26:00"
 categories = ["curso-r"]
 +++
 
-<div><p class="text-muted text-uppercase mb-small text-right"> Por <a href="http://curso-r.com/author/fernando">Fernando</a> 29/04/2017 </p><div id="post-content"> <p>Diagramas de Venn s&#xE3;o como slides de PowerPoint. Se eles tem poucos elementos concisos em uma ordem inteligente, um leitor consegue conectar as ideias expostas e aprender alguma coisa. Em caso contr&#xE1;rio, o excesso de informa&#xE7;&#xE3;o se transforma em um obst&#xE1;culo para a comunica&#xE7;&#xE3;o.</p>
-<p>Bons diagramas de Venn s&#xE3;o capazes de te fazer perceber cruzamentos que n&#xE3;o est&#xE3;o no seu radar. <a href="http://andrewgelman.com/2006/03/29/the_serenity_pr/">No blog do Andrew Gelman</a> tem um exemplo interessante. Ele considera uma ora&#xE7;&#xE3;o, em ingl&#xEA;s, que pede:</p>
+<p class="text-muted text-uppercase mb-small text-right">
+Por <a href="http://curso-r.com/author/fernando">Fernando</a> 29/04/2017
+</p>
+<p>
+Diagramas de Venn são como slides de PowerPoint. Se eles tem poucos
+elementos concisos em uma ordem inteligente, um leitor consegue conectar
+as ideias expostas e aprender alguma coisa. Em caso contrário, o excesso
+de informação se transforma em um obstáculo para a comunicação.
+</p>
+<p>
+Bons diagramas de Venn são capazes de te fazer perceber cruzamentos que
+não estão no seu radar.
+<a href="http://andrewgelman.com/2006/03/29/the_serenity_pr/">No blog do
+Andrew Gelman</a> tem um exemplo interessante. Ele considera uma oração,
+em inglês, que pede:
+</p>
 <blockquote>
-<p>God give me the serenity to accept things which cannot be changed; Give me courage to change things which must be changed; And the wisdom to distinguish one from the other.</p>
+<p>
+God give me the serenity to accept things which cannot be changed; Give
+me courage to change things which must be changed; And the wisdom to
+distinguish one from the other.
+</p>
 </blockquote>
-<p>Pelo jeito em que ela foi escrita, parece que s&#xF3; existem dois tipos de coisas: aquelas que n&#xE3;o podem ser modificadas e aquelas que n&#xF3;s devemos mudar. Entretanto, esse n&#xE3;o &#xE9; o caso:</p>
+<p>
+Pelo jeito em que ela foi escrita, parece que só existem dois tipos de
+coisas: aquelas que não podem ser modificadas e aquelas que nós devemos
+mudar. Entretanto, esse não é o caso:
+</p>
 <ul>
-<li>Se uma coisa pode ser modificada e eu n&#xE3;o devo mud&#xE1;-la, ela n&#xE3;o &#xE9; importante.</li>
-<li>Se uma coisa coisa n&#xE3;o pode ser modificada e eu devo mud&#xE1;-la, eu preciso aceit&#xE1;-la.</li>
+<li>
+Se uma coisa pode ser modificada e eu não devo mudá-la, ela não é
+importante.
+</li>
+<li>
+Se uma coisa coisa não pode ser modificada e eu devo mudá-la, eu preciso
+aceitá-la.
+</li>
 </ul>
-<p><img src="http://curso-r.com/blog/2017-04-29-diagramas-de-venn_files/figure-html/unnamed-chunk-1-1.png" width="672"></p>
-<p>Considerando esse diagrama, O Gelman at&#xE9; sugere uma prece mais cuidadosa:</p>
+<p>
+<img src="http://curso-r.com/blog/2017-04-29-diagramas-de-venn_files/figure-html/unnamed-chunk-1-1.png" width="672">
+</p>
+<p>
+Considerando esse diagrama, O Gelman até sugere uma prece mais
+cuidadosa:
+</p>
 <blockquote>
-<p>Lord, grant me the serenity to accept things that cannot be changed, courage to change things that must be changed; discernment to ignore things that don&#x2019;t need changing; acceptance that some things I need to change, i can&#x2019;t; And the wisdom to understand Venn Diagrams.</p>
-</blockquote> <p>A despeito da utilidade de Diagramas de Venn bem feitos, o R oferece poucas maneiras de constru&#xED;-los. No CRAN, existem apenas tr&#xEA;s pacotes especializados em construir esses gr&#xE1;ficos, mas duas delas s&#xE3;o um pouco insatisfat&#xF3;rias. Neste post, vamos descobrir como fazer diagramas de Venn usando o pacote <code>VennDiagram</code>.</p>
-<div id="o-dataset" class="section level2"> <p>Para n&#xE3;o nos distrairmos com bases de dados complicadas, vamos usar uma tabela artifical inspirada <a href="https://rstudio-pubs-static.s3.amazonaws.com/13301_6641d73cfac741a59c0a851feb99e98b.html">nesse link</a>. Cada linha dessa base representa as prefer&#xEA;ncias por animais de estima&#xE7;&#xE3;o de uma pessoa hipot&#xE9;tica. No total temos 34 pessoas na base e as op&#xE7;&#xF5;es poss&#xED;veis s&#xE3;o &#x201C;C&#xE3;es&#x201D;,&#x201C;Gatos&#x201D;,&#x201C;Lagartos&#x201D; e &#x201C;Serpentes&#x201D;.</p>
-<p>O data.frame est&#xE1; dispon&#xED;vel no c&#xF3;digo fonte desse post.</p>
-</div>
-<div id="pacotes" class="section level2"> <p>Codificar os gr&#xE1;ficos no pacote <code>VennDiagram</code> &#xE9; um pouco chato, por isso vamos precisar de outros pacotes pra ajudar. No geral, apenas as coisas do <code>tidyverse</code> j&#xE1; v&#xE3;o servir.</p>
-<p>O comando abaixo chama os pacotes que vamos usar neste post.</p>
+<p>
+Lord, grant me the serenity to accept things that cannot be changed,
+courage to change things that must be changed; discernment to ignore
+things that don’t need changing; acceptance that some things I need to
+change, i can’t; And the wisdom to understand Venn Diagrams.
+</p>
+</blockquote>
+<p>
+A despeito da utilidade de Diagramas de Venn bem feitos, o R oferece
+poucas maneiras de construí-los. No CRAN, existem apenas três pacotes
+especializados em construir esses gráficos, mas duas delas são um pouco
+insatisfatórias. Neste post, vamos descobrir como fazer diagramas de
+Venn usando o pacote <code>VennDiagram</code>.
+</p>
+<p>
+Para não nos distrairmos com bases de dados complicadas, vamos usar uma
+tabela artifical inspirada
+<a href="https://rstudio-pubs-static.s3.amazonaws.com/13301_6641d73cfac741a59c0a851feb99e98b.html">nesse
+link</a>. Cada linha dessa base representa as preferências por animais
+de estimação de uma pessoa hipotética. No total temos 34 pessoas na base
+e as opções possíveis são “Cães”,“Gatos”,“Lagartos” e “Serpentes”.
+</p>
+<p>
+O data.frame está disponível no código fonte desse post.
+</p>
+
+<p>
+Codificar os gráficos no pacote <code>VennDiagram</code> é um pouco
+chato, por isso vamos precisar de outros pacotes pra ajudar. No geral,
+apenas as coisas do <code>tidyverse</code> já vão servir.
+</p>
+<p>
+O comando abaixo chama os pacotes que vamos usar neste post.
+</p>
 <pre class="r"><code>library(VennDiagram)
 library(tidyverse)</code></pre>
-</div>
-<div id="diagramas-de-venn-usando-o-pacote-venndiagram" class="section level2"> <p>Como eu j&#xE1; disse antes, esse pacote &#xE9; bem chato, pois em todos os gr&#xE1;ficos voc&#xEA; precisa escrever diretamente o n&#xFA;mero de elementos em cada peda&#xE7;o dos conjuntos e os par&#xE2;metros gr&#xE1;ficos detalhados demais. Pra funcionar bem, voc&#xEA; tem que dizer exatamente o que quer fazer.</p>
-<p>Vamos come&#xE7;ar fazendo um diagrama simples. Ele vai representar o conjunto de pessoas que gostam de cachorros.</p>
+
+<p>
+Como eu já disse antes, esse pacote é bem chato, pois em todos os
+gráficos você precisa escrever diretamente o número de elementos em cada
+pedaço dos conjuntos e os parâmetros gráficos detalhados demais. Pra
+funcionar bem, você tem que dizer exatamente o que quer fazer.
+</p>
+<p>
+Vamos começar fazendo um diagrama simples. Ele vai representar o
+conjunto de pessoas que gostam de cachorros.
+</p>
 <pre class="r"><code>numero_de_pessoas_que_gostam_de_cachorros &lt;- dataset %&gt;% dplyr::filter(Dog == 1) %&gt;% nrow() grid.newpage()
 invisible(draw.single.venn(numero_de_pessoas_que_gostam_de_cachorros, #N&#xFA;mero de elementos do conjunto category = &quot;Pessoas que gostam de cachorros&quot;, #Nome do conjunto lty = &quot;blank&quot;, #Grossura da borda dos conjuntos.&quot;blank&quot; quer dizer que n&#xE3;o vai ter borda fill = &quot;light blue&quot;, #Cor do conjunto alpha = 0.5 #Transpar&#xEA;ncia do conjunto. Varia de 0 a 1 ))</code></pre>
-<p><img src="http://curso-r.com/blog/2017-04-29-diagramas-de-venn_files/figure-html/unnamed-chunk-4-1.png" width="480"></p>
-<p>Complicando um pouco mais, dessa vez vamos fazer um diagrama que represente as pessoas que gostam de gatos ou de cachorros.</p>
+<p>
+<img src="http://curso-r.com/blog/2017-04-29-diagramas-de-venn_files/figure-html/unnamed-chunk-4-1.png" width="480">
+</p>
+<p>
+Complicando um pouco mais, dessa vez vamos fazer um diagrama que
+represente as pessoas que gostam de gatos ou de cachorros.
+</p>
 <pre class="r"><code>numero_de_pessoas_que_gostam_de_cachorros &lt;- dataset %&gt;% dplyr::filter(Dog == 1) %&gt;% nrow() numero_de_pessoas_que_gostam_de_gatos &lt;- dataset %&gt;% dplyr::filter(Cat == 1) %&gt;% nrow() numero_de_pessoas_que_gostam_de_gatos_e_de_cachorros &lt;- dataset %&gt;% dplyr::filter(Dog == 1 &amp; Cat == 1) %&gt;% nrow() grid.newpage()
 invisible(draw.pairwise.venn(area1 = numero_de_pessoas_que_gostam_de_cachorros, #N&#xFA;mero de elementos da primeira categoria area2 = numero_de_pessoas_que_gostam_de_gatos, #N&#xFA;mero de elementos da segunda categoria cross.area = numero_de_pessoas_que_gostam_de_gatos_e_de_cachorros, #N&#xFA;mero de elementos na intersec&#xE7;&#xE3;o category = c(&quot;Pessoas que gostam\nde cachorros&quot;, &quot;Pessoas que gostam\nde gatos&quot;), #Nome das categorias lty = c(&quot;blank&quot;, &quot;blank&quot;), #Grossura das bordas fill = c(&quot;light blue&quot;, &quot;pink&quot;), #Cores das bordas alpha = c(0.5, 0.5), #Transpar&#xEA;ncia das bordas cat.pos = c(0, 0), #Posi&#xE7;&#xE3;o dos t&#xED;tulos com rela&#xE7;&#xE3;o aos c&#xED;rculos. 0 quer dizer &quot;em cima&quot; scaled = F #Constr&#xF3;i as &#xE1;reas sem escala ))</code></pre>
-<p><img src="http://curso-r.com/blog/2017-04-29-diagramas-de-venn_files/figure-html/unnamed-chunk-5-1.png" width="480"></p>
-<p>A falta de escalas deixou esse gr&#xE1;fico sim&#xE9;trico e esteticamente agrad&#xE1;vel. Entretanto, em algumas situa&#xE7;&#xF5;es &#xE9; mais legal representar os conjuntos em escala.</p>
+<p>
+<img src="http://curso-r.com/blog/2017-04-29-diagramas-de-venn_files/figure-html/unnamed-chunk-5-1.png" width="480">
+</p>
+<p>
+A falta de escalas deixou esse gráfico simétrico e esteticamente
+agradável. Entretanto, em algumas situações é mais legal representar os
+conjuntos em escala.
+</p>
 <pre class="r"><code>numero_de_pessoas_que_gostam_de_cachorros &lt;- dataset %&gt;% dplyr::filter(Dog == 1) %&gt;% nrow() numero_de_pessoas_que_gostam_de_serpentes &lt;- dataset %&gt;% dplyr::filter(Snake == 1) %&gt;% nrow() numero_de_pessoas_que_gostam_de_cachorros_e_de_serpentes &lt;- dataset %&gt;% dplyr::filter(Dog == 1 &amp; Snake == 1) %&gt;% nrow() grid.newpage()
 invisible(draw.pairwise.venn(area1 = numero_de_pessoas_que_gostam_de_cachorros, #N&#xFA;mero de elementos da primeira categoria area2 = numero_de_pessoas_que_gostam_de_serpentes, #N&#xFA;mero de elementos da segunda categoria cross.area = numero_de_pessoas_que_gostam_de_cachorros_e_de_serpentes, #N&#xFA;mero de elementos na intersec&#xE7;&#xE3;o category = c(&quot;Pessoas que gostam\nde cachorros&quot;, &quot;Pessoas que gostam\nde serpentes&quot;), #Nome das categorias lty = c(&quot;blank&quot;, &quot;blank&quot;), #Grossura das bordas fill = c(&quot;light blue&quot;, &quot;light green&quot;), #Cores das bordas alpha = c(0.5, 0.5), #Transpar&#xEA;ncia das bordas cat.pos = c(0, 0), #Posi&#xE7;&#xE3;o dos t&#xED;tulos com rela&#xE7;&#xE3;o aos c&#xED;rculos. 0 quer dizer &quot;em cima&quot; scaled = T #Constr&#xF3;i as &#xE1;reas sem escala ))</code></pre>
-<p><img src="http://curso-r.com/blog/2017-04-29-diagramas-de-venn_files/figure-html/unnamed-chunk-6-1.png" width="480"></p>
-<p>At&#xE9; aqui tudo vai mais ou menos bem, mas a coisa fica bem mais chata quando voc&#xEA; precisa representar um diagrama com tr&#xEA;s conjuntos. Voc&#xEA; vai precisar passar pra fun&#xE7;&#xE3;o o tamanho de todos os pedacinhos.</p>
+<p>
+<img src="http://curso-r.com/blog/2017-04-29-diagramas-de-venn_files/figure-html/unnamed-chunk-6-1.png" width="480">
+</p>
+<p>
+Até aqui tudo vai mais ou menos bem, mas a coisa fica bem mais chata
+quando você precisa representar um diagrama com três conjuntos. Você vai
+precisar passar pra função o tamanho de todos os pedacinhos.
+</p>
 <pre class="r"><code>numero_de_pessoas_que_gostam_de_gatos &lt;- dataset %&gt;% dplyr::filter(Cat == 1) %&gt;% nrow() numero_de_pessoas_que_gostam_de_serpentes &lt;- dataset %&gt;% dplyr::filter(Snake == 1) %&gt;% nrow() numero_de_pessoas_que_gostam_de_lagartos &lt;- dataset %&gt;% dplyr::filter(Lizard == 1) %&gt;% nrow() numero_de_pessoas_que_gostam_de_gatos_e_de_serpentes &lt;- dataset %&gt;% dplyr::filter(Cat == 1 &amp; Snake == 1) %&gt;% nrow() numero_de_pessoas_que_gostam_de_gatos_e_de_lagartos &lt;- dataset %&gt;% dplyr::filter(Cat == 1 &amp; Lizard == 1) %&gt;% nrow() numero_de_pessoas_que_gostam_de_serpentes_e_de_lagartos &lt;- dataset %&gt;% dplyr::filter(Lizard == 1 &amp; Snake == 1) %&gt;% nrow() numero_de_pessoas_que_gostam_de_serpentes_e_lagartos_e_gatos &lt;- dataset %&gt;% dplyr::filter(Lizard == 1 &amp; Snake == 1 &amp; Cat == 1) %&gt;% nrow() grid.newpage()
 invisible(draw.triple.venn(area1 = numero_de_pessoas_que_gostam_de_gatos, area2 = numero_de_pessoas_que_gostam_de_serpentes, area3 = numero_de_pessoas_que_gostam_de_lagartos, n12 = numero_de_pessoas_que_gostam_de_gatos_e_de_serpentes, n23 = numero_de_pessoas_que_gostam_de_serpentes_e_de_lagartos, n13 = numero_de_pessoas_que_gostam_de_gatos_e_de_lagartos, n123 = numero_de_pessoas_que_gostam_de_serpentes_e_lagartos_e_gatos, category = c(&quot;Gatos&quot;, &quot;Serpentes&quot;, &quot;Lagartos&quot;), lty = &quot;blank&quot;, fill = c(&quot;light blue&quot;, &quot;green&quot;, &quot;light green&quot;), cat.pos = c(45,45,45), scaled = T))</code></pre>
-<p><img src="http://curso-r.com/blog/2017-04-29-diagramas-de-venn_files/figure-html/unnamed-chunk-7-1.png" width="480"></p>
-</div> </div></div>
+<p>
+<img src="http://curso-r.com/blog/2017-04-29-diagramas-de-venn_files/figure-html/unnamed-chunk-7-1.png" width="480">
+</p>
+

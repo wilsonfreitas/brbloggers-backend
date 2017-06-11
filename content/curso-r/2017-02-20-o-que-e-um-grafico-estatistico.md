@@ -4,15 +4,73 @@ date = "2017-02-20 20:26:00"
 categories = ["curso-r"]
 +++
 
-<div id="post-content"> <p>Os gr&#xE1;ficos s&#xE3;o t&#xE9;cnicas de visualiza&#xE7;&#xE3;o de dados amplamente utilizadas em todas as &#xE1;reas da pesquisa. A sua popularidade se deve &#xE0; maneira como elucidam informa&#xE7;&#xF5;es que estavam escondidas nas colunas do banco de dados, sendo que muitos deles podem ser compreendidos at&#xE9; mesmo por leigos no assunto que est&#xE1; sendo discutido.</p>
-<p>Mas ser&#xE1; que podemos definir formalmente o que &#xE9; um gr&#xE1;fico estat&#xED;stico?</p>
-<p><img src="http://curso-r.com/blog/2017-02-20-o-que-e-um-grafico-estatistico_files/figure-html/unnamed-chunk-1-1.png" width="672"></p>
-<p>Gra&#xE7;as ao estat&#xED;stico norte-americano Leland Wilkinson, a resposta &#xE9; sim.</p>
-<p>Em 2005, Leland publicou o livro <em>The Grammar of Graphics</em>, uma fonte de princ&#xED;pios fundamentais para a constru&#xE7;&#xE3;o de gr&#xE1;ficos estat&#xED;sticos. No livro, ele defende que um gr&#xE1;fico &#xE9; o mapeamento dos dados a partir de atributos est&#xE9;ticos (posi&#xE7;&#xE3;o, cor, forma, tamanho) de objetos geom&#xE9;tricos (pontos, linhas, barras, caixas). Simples assim.</p>
-<p>Al&#xE9;m de responder a pergunta levantada nesse post, os conceitos de Leland tiveram outra grande import&#xE2;ncia para a visualiza&#xE7;&#xE3;o de dados. Alguns anos mais tarde, o seu trabalho inspirou Hadley Wickham a criar o pacote <code>ggplot2</code>, que enterrou com muitas p&#xE1;s de terra as fun&#xE7;&#xF5;es gr&#xE1;ficas do R base.</p>
-<p>Em <em>A Layered Grammar of Graphics</em>, Hadley sugeriu que os principais aspectos de um gr&#xE1;fico (dados, sistema de coordenadas, r&#xF3;tulos e anota&#xE7;&#xF5;es) podiam ser divididos em camadas, constru&#xED;das uma a uma na elabora&#xE7;&#xE3;o do gr&#xE1;fico. Essa &#xE9; a ess&#xEA;ncia do <code>ggplot2</code>.</p>
-<p>No gr&#xE1;fico abaixo, temos informa&#xE7;&#xE3;o de 32 carros com respeito a 4 vari&#xE1;veis: milhas por gal&#xE3;o, tonelagem, transmiss&#xE3;o e n&#xFA;mero de cilindros. O objeto geom&#xE9;trico escolhido para representar os dados foi o <strong>ponto</strong>. As posi&#xE7;&#xF5;es dos pontos no eixo xy mapeia a associa&#xE7;&#xE3;o entre a tonelagem e a quantidade de milhas por gal&#xE3;o. A cor dos pontos mapeia o n&#xFA;mero de cilindros de cada carro, enquanto a forma dos pontos mapeia o tipo de transmiss&#xE3;o. Observando o c&#xF3;digo, fica claro como cada linha/camada representa um aspecto diferente do gr&#xE1;fico.</p>
-<p>Os conceitos criados por Leland e Hadley defendem que essa estrutura pode ser utilizada para construir e entender qualquer tipo de gr&#xE1;fico, dando a eles, dessa maneira, a sua defini&#xE7;&#xE3;o formal.</p>
+<p>
+Os gráficos são técnicas de visualização de dados amplamente utilizadas
+em todas as áreas da pesquisa. A sua popularidade se deve à maneira como
+elucidam informações que estavam escondidas nas colunas do banco de
+dados, sendo que muitos deles podem ser compreendidos até mesmo por
+leigos no assunto que está sendo discutido.
+</p>
+<p>
+Mas será que podemos definir formalmente o que é um gráfico estatístico?
+</p>
+<p>
+<img src="http://curso-r.com/blog/2017-02-20-o-que-e-um-grafico-estatistico_files/figure-html/unnamed-chunk-1-1.png" width="672">
+</p>
+<p>
+Graças ao estatístico norte-americano Leland Wilkinson, a resposta é
+sim.
+</p>
+<p>
+Em 2005, Leland publicou o livro <em>The Grammar of Graphics</em>, uma
+fonte de princípios fundamentais para a construção de gráficos
+estatísticos. No livro, ele defende que um gráfico é o mapeamento dos
+dados a partir de atributos estéticos (posição, cor, forma, tamanho) de
+objetos geométricos (pontos, linhas, barras, caixas). Simples assim.
+</p>
+<p>
+Além de responder a pergunta levantada nesse post, os conceitos de
+Leland tiveram outra grande importância para a visualização de dados.
+Alguns anos mais tarde, o seu trabalho inspirou Hadley Wickham a criar o
+pacote <code>ggplot2</code>, que enterrou com muitas pás de terra as
+funções gráficas do R base.
+</p>
+<p>
+Em <em>A Layered Grammar of Graphics</em>, Hadley sugeriu que os
+principais aspectos de um gráfico (dados, sistema de coordenadas,
+rótulos e anotações) podiam ser divididos em camadas, construídas uma a
+uma na elaboração do gráfico. Essa é a essência do <code>ggplot2</code>.
+</p>
+<p>
+No gráfico abaixo, temos informação de 32 carros com respeito a 4
+variáveis: milhas por galão, tonelagem, transmissão e número de
+cilindros. O objeto geométrico escolhido para representar os dados foi o
+<strong>ponto</strong>. As posições dos pontos no eixo xy mapeia a
+associação entre a tonelagem e a quantidade de milhas por galão. A cor
+dos pontos mapeia o número de cilindros de cada carro, enquanto a forma
+dos pontos mapeia o tipo de transmissão. Observando o código, fica claro
+como cada linha/camada representa um aspecto diferente do gráfico.
+</p>
+<p>
+Os conceitos criados por Leland e Hadley defendem que essa estrutura
+pode ser utilizada para construir e entender qualquer tipo de gráfico,
+dando a eles, dessa maneira, a sua definição formal.
+</p>
 <pre class="r"><code>ggplot(mtcars) + geom_point(aes(x = disp, y = mpg, shape = as.factor(am), color = cyl)) + labs(x = &quot;Tonelagem&quot;, y = &quot;Milhas por gal&#xE3;o&quot;, shape = &quot;Transmiss&#xE3;o&quot;, color = &quot;Cilindros&quot;) + scale_shape_discrete(labels = c(&quot;Autom&#xE1;tica&quot;,&quot;Manual&quot;)) + theme_bw() + theme(legend.position = &quot;bottom&quot;) </code></pre>
-<p><img src="http://curso-r.com/blog/2017-02-20-o-que-e-um-grafico-estatistico_files/figure-html/unnamed-chunk-2-1.png" width="672"></p>
-<p>Por fim, &#xE9; preciso frisar que, apesar de a gram&#xE1;tica prover uma forte funda&#xE7;&#xE3;o para a constru&#xE7;&#xE3;o de gr&#xE1;ficos, ela n&#xE3;o indica qual gr&#xE1;fico deve ser usado ou como ele deve parecer. Essas escolhas, fundamentadas na pergunta a ser respondida, nem sempre s&#xE3;o triviais, e negligenci&#xE1;-las pode gerar gr&#xE1;ficos mal constru&#xED;dos e conclus&#xF5;es equivocadas. Cabe a n&#xF3;s, estat&#xED;sticos, desenvolver, aprimorar e divulgar as t&#xE9;cnicas de visualiza&#xE7;&#xE3;o adequadas para cada tipo de vari&#xE1;vel, assim como apontar ou denunciar os usos incorretos e mal-intencionados. Mas, em um mundo cuja veracidade das not&#xED;cias &#xE9; cada vez menos importante, &#xE9; papel de todos ter senso cr&#xED;tico para entender e julgar as informa&#xE7;&#xF5;es trazidas por um gr&#xE1;fico.</p> </div>
+<p>
+<img src="http://curso-r.com/blog/2017-02-20-o-que-e-um-grafico-estatistico_files/figure-html/unnamed-chunk-2-1.png" width="672">
+</p>
+<p>
+Por fim, é preciso frisar que, apesar de a gramática prover uma forte
+fundação para a construção de gráficos, ela não indica qual gráfico deve
+ser usado ou como ele deve parecer. Essas escolhas, fundamentadas na
+pergunta a ser respondida, nem sempre são triviais, e negligenciá-las
+pode gerar gráficos mal construídos e conclusões equivocadas. Cabe a
+nós, estatísticos, desenvolver, aprimorar e divulgar as técnicas de
+visualização adequadas para cada tipo de variável, assim como apontar ou
+denunciar os usos incorretos e mal-intencionados. Mas, em um mundo cuja
+veracidade das notícias é cada vez menos importante, é papel de todos
+ter senso crítico para entender e julgar as informações trazidas por um
+gráfico.
+</p>
+

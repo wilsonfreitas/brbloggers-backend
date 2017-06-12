@@ -8,8 +8,11 @@ library(readr)
 
 # secure::add_user("daniel", public_key = secure::local_key())
 # secure::encrypt("MERCURY_KEY", key = "xxxxxxxxxxxxxxxx")
+# secure::encrypt("NETLIFY_BUILD_HOOK", key = "xxxxxxxxxxxxxxx")
+
 
 Sys.setenv(MERCURY_KEY = secure::decrypt("MERCURY_KEY")$key)
+
 
 # Auxiliary functions -----------------------------------------------------
 
@@ -131,7 +134,8 @@ if(nrow(new_posts) > 0){
   }
 }
 
-
+# trigger netlify build
+httr::POST(secure::decrypt("NETLIFY_BUILD_HOOK")$key)
 
 
 

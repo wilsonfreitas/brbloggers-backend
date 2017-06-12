@@ -22,3 +22,5 @@ cd ..
 
 # now the submodules are in the state you want, so
 git commit -am "submodule updated"
+
+git push

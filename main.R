@@ -99,23 +99,26 @@ if(nrow(new_posts) > 0){
       write_lines(new_posts$item_content[i], sprintf("%s.html", file_name))
       
       # convert file to markdown
-      rmarkdown::render(sprintf("%s.html", file_name), rmarkdown::md_document())
-      
-      # add the header and rewrite
-      md_file <- read_file(sprintf("%s.md", file_name)) 
-      
-      readr::write_lines(
-        sprintf(
-          "%s\n%s",
-          create_md_header(
-            new_posts$item_title[i], 
-            new_posts$item_date_published[i], 
-            new_posts$blog[i]
-          ),
-          md_file
-        ), 
-        sprintf("%s.md", file_name)
-      )
+      if(rmarkdown::pandoc_available(error = FALSE)){
+        rmarkdown::render(sprintf("%s.html", file_name), rmarkdown::md_document())
+        
+        # add the header and rewrite
+        md_file <- read_file(sprintf("%s.md", file_name)) 
+        
+        readr::write_lines(
+          sprintf(
+            "%s\n%s",
+            create_md_header(
+              new_posts$item_title[i], 
+              new_posts$item_date_published[i], 
+              new_posts$blog[i]
+            ),
+            md_file
+          ), 
+          sprintf("%s.md", file_name)
+        )
+        
+      } 
       
       # delete html file
       file.remove(sprintf("%s.html", file_name))

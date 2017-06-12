@@ -2,6 +2,7 @@
 title = "O que é um gráfico estatístico?"
 date = "2017-02-20 20:26:00"
 categories = ["curso-r"]
+original_url = "http://curso-r.com/blog/2017/02/20/2017-02-20-o-que-e-um-grafico-estatistico/"
 +++
 
 <p>

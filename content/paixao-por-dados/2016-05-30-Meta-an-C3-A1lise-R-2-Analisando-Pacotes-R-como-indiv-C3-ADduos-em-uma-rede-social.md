@@ -2,6 +2,7 @@
 title = "Meta Análise r (2): analisando pacotes r como indivíduos em uma rede social"
 date = "2016-05-30 03:00:00"
 categories = ["paixao-por-dados"]
+original_url = "http://sillasgonzaga.github.io/2016-05-30-Meta-an%C3%A1lise-R-(2)-Analisando-Pacotes-R-como-indiv%C3%ADduos-em-uma-rede-social/"
 +++
 
 <p>

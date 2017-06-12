@@ -2,6 +2,7 @@
 title = "K-means e paleta de cores"
 date = "2017-04-22 11:07:31"
 categories = ["curso-r"]
+original_url = "http://curso-r.com/blog/2017/04/22/2017-04-21-paleta-de-cores/"
 +++
 
 <p>
@@ -56,8 +57,7 @@ agora o algoritmo k-means, para organizar cada um desses pixels em um
 grupo. O K-means pede o número de grupos como input, vamos começar com
 6.
 </p>
-<pre class="r"><code>km &lt;- kmeans(img_matrix, centers = 6)
-## Warning: Quick-TRANSfer stage steps exceeded maximum (= 39985000)</code></pre>
+<pre class="r"><code>km &lt;- kmeans(img_matrix, centers = 6)</code></pre>
 <p>
 O objeto gerado pela função <code>kmeans</code> armazena um vetor
 chamado <code>cluster</code> (do tamanho do número de linhas da matriz)
@@ -80,12 +80,12 @@ centroides &lt;- img_df %&gt;% group_by(cluster) %&gt;% summarise_all(mean) cent
 ## # A tibble: 6 x 4
 ## cluster r g b
 ## &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1 1 0.1175119 0.04253211 0.2199641
-## 2 2 0.4754028 0.16566003 0.1548975
-## 3 3 0.6949140 0.42026498 0.2792096
-## 4 4 0.8679457 0.74966801 0.6294652
-## 5 5 0.2246133 0.28411512 0.4462488
-## 6 6 0.3923888 0.47786446 0.5409067</code></pre>
+## 1 1 0.71951030 0.5487661 0.4097725
+## 2 2 0.37889146 0.1185504 0.1558589
+## 3 3 0.27214211 0.3641213 0.4901644
+## 4 4 0.09965226 0.0436630 0.2398620
+## 5 5 0.62387801 0.2832790 0.1896923
+## 6 6 0.88572504 0.7791481 0.6688438</code></pre>
 <p>
 Também transformamos uma cor r, g e b em uma representação hexadecimal.
 Assim conseguimos um vetor de caracteres que representa a a paleta de
@@ -93,7 +93,7 @@ cores.
 </p>
 <pre class="r"><code>centroides &lt;- centroides %&gt;% mutate(cor = rgb(r, g, b))
 centroides$cor
-## [1] &quot;#1E0B38&quot; &quot;#792A27&quot; &quot;#B16B47&quot; &quot;#DDBFA1&quot; &quot;#394872&quot; &quot;#647A8A&quot;</code></pre>
+## [1] &quot;#B78C68&quot; &quot;#611E28&quot; &quot;#455D7D&quot; &quot;#190B3D&quot; &quot;#9F4830&quot; &quot;#E2C7AB&quot;</code></pre>
 <p>
 Para exibir a paleta vamos usar a seguinte função que foi copiada e
 levemente modificada

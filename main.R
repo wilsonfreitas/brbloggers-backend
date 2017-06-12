@@ -39,12 +39,13 @@ fix_file_name <- function(dir, item_link, feed_link){
   )
 }
 
-create_md_header <- function(title, date, blog){
+create_md_header <- function(title, date, blog, original_url){
   sprintf(
-  '+++\ntitle = "%s"\ndate = "%s"\ncategories = ["%s"]\n+++\n',
+  '+++\ntitle = "%s"\ndate = "%s"\ncategories = ["%s"]\noriginal_url = "%s"\n+++\n',
   title,
   date,
-  blog
+  blog,
+  original_url
   )
 }
 
@@ -68,10 +69,11 @@ posts <- readRDS("data/posts.rds")
 
 all_feeds <- feeds %>%
   map_df(~safe_tidyfeed(.x$url), .id = "blog") %>%
+  filter(
+    item_date_published > lubridate::today() - 30 | # pegar o conteudo de posts recentes
+      (!blog %in% unique(posts$blog)) # ou de blogs novos
+  ) %>%
   mutate(item_content = map_chr(item_link, safe_mercury))
-
-safe_mercury(all_feeds$item_link[45])
-mercury(all_feeds$item_link[45])
 
 
 # Decide which posts will be written
@@ -111,7 +113,8 @@ if(nrow(new_posts) > 0){
             create_md_header(
               new_posts$item_title[i], 
               new_posts$item_date_published[i], 
-              new_posts$blog[i]
+              new_posts$blog[i],
+              new_posts$item_link[i]
             ),
             md_file
           ), 

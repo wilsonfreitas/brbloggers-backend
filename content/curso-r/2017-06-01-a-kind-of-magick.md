@@ -2,6 +2,7 @@
 title = "A kind of magick"
 date = "2017-06-01 20:26:00"
 categories = ["curso-r"]
+original_url = "http://curso-r.com/blog/2017/06/01/2017-06-01-a-kind-of-magick/"
 +++
 
 <p class="text-muted text-uppercase mb-small text-right">

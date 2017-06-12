@@ -2,6 +2,7 @@
 title = "Transparência (7): Os famosos Cargos Comissionados"
 date = "2016-02-03 03:00:00"
 categories = ["paixao-por-dados"]
+original_url = "http://sillasgonzaga.github.io/2016-02-03-transparenciaParte7/"
 +++
 
 <article class="blog-post">

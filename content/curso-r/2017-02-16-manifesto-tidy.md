@@ -2,6 +2,7 @@
 title = "Manifesto tidy"
 date = "2017-02-15 11:07:31"
 categories = ["curso-r"]
+original_url = "http://curso-r.com/blog/2017/02/15/2017-02-16-manifesto-tidy/"
 +++
 
 <p class="text-muted text-uppercase mb-small text-right">

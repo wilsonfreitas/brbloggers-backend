@@ -2,6 +2,7 @@
 title = "Você está a menos de 1 km de um Hambúrguer?"
 date = "2017-04-10 20:26:00"
 categories = ["curso-r"]
+original_url = "http://curso-r.com/blog/2017/04/10/2017-04-13-o-que-tem-a-um-km/"
 +++
 
 <p>

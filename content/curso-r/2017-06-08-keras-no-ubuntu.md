@@ -2,6 +2,7 @@
 title = "Instalando Anaconda + TensorFlow + Keras para R no Ubuntu 16.04 Server"
 date = "2017-06-08 18:12:00"
 categories = ["curso-r"]
+original_url = "http://curso-r.com/blog/2017/06/08/2017-06-08-keras-no-ubuntu/"
 +++
 
 <p class="text-muted text-uppercase mb-small text-right">

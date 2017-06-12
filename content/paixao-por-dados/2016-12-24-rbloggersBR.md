@@ -2,6 +2,7 @@
 title = "Anunciando a criação do rbloggers-BR: Seu novo feed de artigos sobre o R"
 date = "2016-12-24 03:00:00"
 categories = ["paixao-por-dados"]
+original_url = "http://sillasgonzaga.github.io/2016-12-24-rbloggersBR/"
 +++
 
 <article class="blog-post">

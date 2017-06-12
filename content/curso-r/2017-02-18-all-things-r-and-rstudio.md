@@ -2,6 +2,7 @@
 title = "rstudio::conf: Sessão Final"
 date = "2017-03-16 11:07:31"
 categories = ["curso-r"]
+original_url = "http://curso-r.com/blog/2017/03/16/2017-02-18-all-things-r-and-rstudio/"
 +++
 
 <p>

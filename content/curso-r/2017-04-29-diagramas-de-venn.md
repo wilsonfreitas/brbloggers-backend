@@ -2,6 +2,7 @@
 title = "Diagramas de Venn em R"
 date = "2017-04-29 20:26:00"
 categories = ["curso-r"]
+original_url = "http://curso-r.com/blog/2017/04/29/2017-04-29-diagramas-de-venn/"
 +++
 
 <p class="text-muted text-uppercase mb-small text-right">

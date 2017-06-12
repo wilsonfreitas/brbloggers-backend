@@ -2,6 +2,7 @@
 title = "Top 10 pacotes para data science"
 date = "2017-02-21"
 categories = ["curso-r"]
+original_url = "http://curso-r.com/blog/2017/02/21/2017-02-21-top10-pacotes-para-data-science/"
 +++
 
 <p class="text-muted text-uppercase mb-small text-right">

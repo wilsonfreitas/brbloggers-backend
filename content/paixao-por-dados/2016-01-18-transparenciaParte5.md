@@ -2,6 +2,7 @@
 title = "Transparência (5): Trabalhando com datas"
 date = "2016-01-18 03:00:00"
 categories = ["paixao-por-dados"]
+original_url = "http://sillasgonzaga.github.io/2016-01-18-transparenciaParte5/"
 +++
 
 <article class="blog-post">

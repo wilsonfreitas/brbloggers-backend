@@ -2,6 +2,7 @@
 title = "Multas em São Paulo"
 date = "2017-04-01 11:07:31"
 categories = ["curso-r"]
+original_url = "http://curso-r.com/blog/2017/04/01/2017-04-01-multas-em-sp/"
 +++
 
 <p>

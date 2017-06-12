@@ -2,6 +2,7 @@
 title = "Clusterização no R: Como segmentar países de acordo com indicadores econômicos"
 date = "2016-06-28 03:00:00"
 categories = ["paixao-por-dados"]
+original_url = "http://sillasgonzaga.github.io/2016-06-28-clusterizacaoPaises/"
 +++
 
 <article class="blog-post">

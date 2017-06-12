@@ -2,6 +2,7 @@
 title = "Transparência(4): Análise de salários usando Treemaps"
 date = "2016-01-17 03:00:00"
 categories = ["paixao-por-dados"]
+original_url = "http://sillasgonzaga.github.io/2016-01-17-transparenciaParte4/"
 +++
 
 <article class="blog-post">

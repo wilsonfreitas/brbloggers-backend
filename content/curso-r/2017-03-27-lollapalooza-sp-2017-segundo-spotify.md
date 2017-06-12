@@ -2,6 +2,7 @@
 title = "Lollapalooza segundo Spotify - Web Scraping, API do Spotify e tidyverse"
 date = "2017-03-27"
 categories = ["curso-r"]
+original_url = "http://curso-r.com/blog/2017/03/27/2017-03-27-lollapalooza-sp-2017-segundo-spotify/"
 +++
 
 <p class="text-muted text-uppercase mb-small text-right">

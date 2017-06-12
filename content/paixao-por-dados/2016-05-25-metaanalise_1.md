@@ -2,6 +2,7 @@
 title = "Meta-análise R (1): Quais são os pacotes mais baixados?"
 date = "2016-05-25 03:00:00"
 categories = ["paixao-por-dados"]
+original_url = "http://sillasgonzaga.github.io/2016-05-25-metaanalise_1/"
 +++
 
 <article class="blog-post">

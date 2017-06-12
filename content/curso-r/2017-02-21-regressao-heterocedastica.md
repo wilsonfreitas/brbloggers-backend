@@ -2,6 +2,7 @@
 title = "Modelando a variância da normal"
 date = "2017-03-09 11:07:31"
 categories = ["curso-r"]
+original_url = "http://curso-r.com/blog/2017/03/09/2017-02-21-regressao-heterocedastica/"
 +++
 
 <p>

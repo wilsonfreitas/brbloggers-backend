@@ -2,6 +2,7 @@
 title = "Web scraping do site da Secretaria de Segurança Pública de São Paulo"
 date = "2017-05-19 20:26:00"
 categories = ["curso-r"]
+original_url = "http://curso-r.com/blog/2017/05/19/2017-05-19-scrapper-ssp/"
 +++
 
 <div id="post-content">

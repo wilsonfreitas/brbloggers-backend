@@ -2,6 +2,7 @@
 title = "Knitr: mudando o diretório de trabalho"
 date = "2017-03-25 20:26:00"
 categories = ["curso-r"]
+original_url = "http://curso-r.com/blog/2017/03/25/2017-03-25-knitr-mudando-diretorio-de-trabalho/"
 +++
 
 <div>

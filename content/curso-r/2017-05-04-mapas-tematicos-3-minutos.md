@@ -2,6 +2,7 @@
 title = "Gráficos miojo: Mapas temáticos do Brasil em 3 minutos ou menos"
 date = "2017-05-04 20:26:00"
 categories = ["curso-r"]
+original_url = "http://curso-r.com/blog/2017/05/04/2017-05-04-mapas-tematicos-3-minutos/"
 +++
 
 <p class="text-muted text-uppercase mb-small text-right">

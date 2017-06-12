@@ -2,6 +2,7 @@
 title = "O Porta dos Fundos está em decadência? (REVISITED)"
 date = "2017-04-28 20:26:00"
 categories = ["curso-r"]
+original_url = "http://curso-r.com/blog/2017/04/28/2017-04-28-porta-dos-fundos-decadencia-revisited/"
 +++
 
 <p>

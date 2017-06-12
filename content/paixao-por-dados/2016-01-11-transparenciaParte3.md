@@ -2,6 +2,7 @@
 title = "Transparência (3): Em quais estados os salários são mais mal distribuídos?"
 date = "2016-01-11 03:00:00"
 categories = ["paixao-por-dados"]
+original_url = "http://sillasgonzaga.github.io/2016-01-11-transparenciaParte3/"
 +++
 
 <article class="blog-post">

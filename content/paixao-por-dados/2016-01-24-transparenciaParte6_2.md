@@ -2,6 +2,7 @@
 title = "Transparência (6): Quem são os 1% do funcionalismo público?"
 date = "2016-01-24 03:00:00"
 categories = ["paixao-por-dados"]
+original_url = "http://sillasgonzaga.github.io/2016-01-24-transparenciaParte6_2/"
 +++
 
 <article class="blog-post">

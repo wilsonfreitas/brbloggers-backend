@@ -2,6 +2,7 @@
 title = "Censo da Educação Superior (2): Como plotar o movimento migratório universitário no Brasil em um mapa"
 date = "2016-06-08 03:00:00"
 categories = ["paixao-por-dados"]
+original_url = "http://sillasgonzaga.github.io/2016-06-08-censo_educ_superior2/"
 +++
 
 <article class="blog-post">

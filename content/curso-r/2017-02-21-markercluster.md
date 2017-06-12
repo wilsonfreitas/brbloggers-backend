@@ -2,6 +2,7 @@
 title = "leaflet com markerCluster"
 date = "2017-03-01 20:26:00"
 categories = ["curso-r"]
+original_url = "http://curso-r.com/blog/2017/03/01/2017-02-21-markercluster/"
 +++
 
 <div>

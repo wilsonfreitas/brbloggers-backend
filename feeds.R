@@ -13,6 +13,11 @@ feeds <- list(
   "analise-real" = list(
     nome = "Análise Real",
     url = "https://analisereal.com/feed/"
+  ),
+  
+  "dfalbel" = list(
+    nome = "Como faz no R",
+    url = "http://dfalbel.github.io/feed.xml"
   )
   
 )

@@ -71,8 +71,58 @@ for(blog in names(feeds)){
 posts <- readRDS("data/posts.rds")
 
 all_feeds <- feeds %>%
-  map_df(~safe_tidyfeed(.x$url), .id = "blog") %>%
-  select(-starts_with("item_category"), -feed_update_period, -item_creator) %>%
+  map(~safe_tidyfeed(.x$url))
+
+# modificações necessárias p/ cada blog
+all_feeds$`curso-r` <- all_feeds$`curso-r` %>%
+  select(
+    feed_title,
+    feed_link,
+    item_title,
+    item_date_published,
+    item_link
+  )
+
+
+all_feeds$`paixao-por-dados` <- all_feeds$`paixao-por-dados` %>%
+  select(
+    feed_title,
+    feed_link,
+    item_title,
+    item_date_published,
+    item_link
+  )
+
+
+all_feeds$`analise-real` <- all_feeds$`analise-real` %>%
+  select(
+    feed_title,
+    feed_link,
+    item_title,
+    item_date_published,
+    item_link
+  ) 
+
+all_feeds$dfalbel <- all_feeds$dfalbel %>%
+  select(
+    feed_title,
+    feed_link,
+    item_title,
+    item_date_published,
+    item_link
+  )
+
+all_feeds$lurodrigo <- all_feeds$lurodrigo %>%
+  select(
+    feed_title,
+    feed_link,
+    item_title,
+    item_date_published = item_date_updated,
+    item_link
+  )
+
+all_feeds %>%
+  map_df(~.x, .id = "blog") %>%
   filter(
     item_date_published > lubridate::today() - 30 | # pegar o conteudo de posts recentes
       (!blog %in% unique(posts$blog)) # ou de blogs novos

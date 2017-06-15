@@ -121,12 +121,12 @@ all_feeds$lurodrigo <- all_feeds$lurodrigo %>%
     item_link
   )
 
-all_feeds %>%
+all_feeds <- all_feeds %>%
   map_df(~.x, .id = "blog") %>%
-  filter(
-    item_date_published > lubridate::today() - 30 | # pegar o conteudo de posts recentes
-      (!blog %in% unique(posts$blog)) # ou de blogs novos
-  ) %>%
+  # filter(
+  #   item_date_published > lubridate::today() - 30 | # pegar o conteudo de posts recentes
+  #     (!blog %in% unique(posts$blog)) # ou de blogs novos
+  # ) %>%
   mutate(item_content = map_chr(item_link, safe_mercury))
 
 

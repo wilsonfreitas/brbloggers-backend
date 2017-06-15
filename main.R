@@ -135,6 +135,36 @@ if(nrow(new_posts) > 0){
   }
 }
 
+# adicionar perguntas mais recentes do stack-overflow
+
+all_sopt <- readRDS("data/sopt.rds")
+sopt <- tidyfeed("https://pt.stackoverflow.com/feeds/tag?tagnames=r&sort=newest")
+
+new_sopt <- setdiff(all_sopt, sopt)
+
+all_sopt <- bind_rows(all_sopt, new_sopt)
+saveRDS(all_sopt, "data/sopt.rds")
+
+if(nrow(new_sopt) > 0){
+  for(i in 1:nrow(new_sopt)){
+    write_lines(
+      sprintf(
+        '+++\ntitle = "%s"\ndate = "%s"\ncategories = ["%s"]\noriginal_url = "%s"\n+++\n',
+      new_sopt$item_title[i],
+      new_sopt$item_date_updated[i],
+      "sopt",
+      new_sopt$item_link[i]
+      ), 
+      path = sprintf("content/sopt/%s.md", str_extract(sopt$item_link[i], "[^/]*$"))
+    )
+  }  
+}
+
+
+
+
+
+
 
 
 

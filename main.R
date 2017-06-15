@@ -149,7 +149,7 @@ if(nrow(new_sopt) > 0){
   for(i in 1:nrow(new_sopt)){
     write_lines(
       sprintf(
-        '+++\ntitle = "%s"\ndate = "%s"\ncategories = ["%s"]\noriginal_url = "%s"\n+++\n',
+        '+++\ntitle = "%s"\ndate = "%s"\ncategories = ["%s"]\noriginal_url = "%s"\nat_home="no"\n+++\n',
       new_sopt$item_title[i],
       new_sopt$item_date_updated[i],
       "sopt",

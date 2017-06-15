@@ -138,7 +138,8 @@ if(nrow(new_posts) > 0){
 # adicionar perguntas mais recentes do stack-overflow
 
 all_sopt <- readRDS("data/sopt.rds")
-sopt <- tidyfeed("https://pt.stackoverflow.com/feeds/tag?tagnames=r&sort=newest")
+sopt <- tidyfeed("https://pt.stackoverflow.com/feeds/tag?tagnames=r&sort=newest") %>%
+  select(-feed_last_updated)
 
 new_sopt <- setdiff(all_sopt, sopt)
 

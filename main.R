@@ -135,8 +135,7 @@ if(nrow(new_posts) > 0){
   }
 }
 
-# trigger netlify build
-# httr::POST(secure::decrypt("NETLIFY_BUILD_HOOK")$key)
+
 
 
 

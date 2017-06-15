@@ -18,7 +18,12 @@ feeds <- list(
   "dfalbel" = list(
     nome = "Como faz no R",
     url = "http://dfalbel.github.io/feed.xml"
-  )
+  ),
   
+  "lurodrigo" = list(
+    nome = "Luiz Rodrigo",
+    url = "http://lurodrigo.com/feed.R_pt.xml"
+  )
+
 )
 

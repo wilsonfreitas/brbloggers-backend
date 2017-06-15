@@ -155,7 +155,7 @@ if(nrow(new_sopt) > 0){
       "sopt",
       new_sopt$item_link[i]
       ), 
-      path = sprintf("content/sopt/%s.md", str_extract(sopt$item_link[i], "[^/]*$"))
+      path = sprintf("content/sopt/%s.md", str_extract(new_sopt$item_link[i], "[^/]*$"))
     )
   }  
 }

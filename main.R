@@ -131,6 +131,7 @@ all_feeds$`cantinho-do-r` <- all_feeds$`cantinho-do-r` %>%
   )
 
 all_feeds <- all_feeds %>%
+  discard(is.na) %>% # se proteger de falhas no download do feed
   map_df(~.x, .id = "blog") %>%
   filter(
     item_date_published > (lubridate::today() - 30) | # pegar o conteudo de posts recentes

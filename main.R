@@ -83,7 +83,6 @@ all_feeds$`curso-r` <- all_feeds$`curso-r` %>%
     item_link
   )
 
-
 all_feeds$`paixao-por-dados` <- all_feeds$`paixao-por-dados` %>%
   select(
     feed_title,
@@ -92,7 +91,6 @@ all_feeds$`paixao-por-dados` <- all_feeds$`paixao-por-dados` %>%
     item_date_published,
     item_link
   )
-
 
 all_feeds$`analise-real` <- all_feeds$`analise-real` %>%
   select(
@@ -130,8 +128,16 @@ all_feeds$`cantinho-do-r` <- all_feeds$`cantinho-do-r` %>%
     item_link
   )
 
+all_feeds$IBPAD <- all_feeds$IBPAD %>%
+  select(
+    feed_title,
+    feed_link,
+    item_title,
+    item_date_published,
+    item_link
+  )
+
 all_feeds <- all_feeds %>%
-  discard(is.na) %>% # se proteger de falhas no download do feed
   map_df(~.x, .id = "blog") %>%
   filter(
     item_date_published > (lubridate::today() - 30) | # pegar o conteudo de posts recentes

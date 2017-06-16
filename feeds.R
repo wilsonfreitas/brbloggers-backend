@@ -28,6 +28,11 @@ feeds <- list(
   "cantinho-do-r" = list(
     nome = "Cantinho do R",
     url = "https://cantinhodor.wordpress.com/feed/"
+  ),
+  
+  "IBPAD" = list(
+    nome = "IBPAD",
+    url = "http://www.ibpad.com.br/blog/analise-de-dados/feed/"
   )
 
 )

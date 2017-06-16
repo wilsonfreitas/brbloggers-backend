@@ -191,7 +191,8 @@ all_sopt <- readRDS("data/sopt.rds")
 sopt <- tidyfeed("https://pt.stackoverflow.com/feeds/tag?tagnames=r&sort=newest") %>%
   select(-feed_last_updated)
 
-new_sopt <- setdiff(all_sopt, sopt)
+new_sopt <- setdiff(all_sopt, sopt) %>%
+  filter(item_date_updated > max(all_sopt$item_date_updated))
 
 all_sopt <- bind_rows(all_sopt, new_sopt)
 saveRDS(all_sopt, "data/sopt.rds")

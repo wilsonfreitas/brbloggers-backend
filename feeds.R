@@ -23,6 +23,11 @@ feeds <- list(
   "lurodrigo" = list(
     nome = "Luiz Rodrigo",
     url = "http://lurodrigo.com/feed.R_pt.xml"
+  ),
+  
+  "cantinho-do-r" = list(
+    nome = "Cantinho do R",
+    url = "https://cantinhodor.wordpress.com/feed/"
   )
 
 )

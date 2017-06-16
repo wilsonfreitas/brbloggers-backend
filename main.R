@@ -121,6 +121,15 @@ all_feeds$lurodrigo <- all_feeds$lurodrigo %>%
     item_link
   )
 
+all_feeds$`cantinho-do-r` <- all_feeds$`cantinho-do-r` %>%
+  select(
+    feed_title,
+    feed_link,
+    item_title,
+    item_date_published,
+    item_link
+  )
+
 all_feeds <- all_feeds %>%
   map_df(~.x, .id = "blog") %>%
   filter(
